@@ -1,11 +1,11 @@
-# [Project Title]
+# [Project 2]
 
 Replace this project title with the lab or assignment name.
 
 ## Your Information
 
-- **Name:**
-- **Date:**
+- **Name: Ryan Plotner**
+- **Date: 10/01/2026**
 
 ## How to Run
 
