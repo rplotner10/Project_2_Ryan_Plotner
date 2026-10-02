@@ -15,7 +15,7 @@ abstract class Account {
         return accountNumber;
     }
 
-    public String getAccountFirstName(){
+    public String getAccountHolderFirstName(){
         return accountHolderFirstName;
     }
 
