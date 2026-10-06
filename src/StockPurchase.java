@@ -10,7 +10,7 @@ public class StockPurchase {
         this.purchasePrice = purchasePrice;
         this.numberOfShares = numberOfShares;
     }
-
+ 
     public String getStockName() {
         return stockName;
     }

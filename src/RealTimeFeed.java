@@ -1,3 +1,6 @@
-public class RealTimeFeed {
+public interface RealTimeFeed {
+
+    public double getCurrentValue(String tickerSymbol);
     
 }
+ 
