@@ -41,4 +41,18 @@ public class Checking extends Account{
         }
         System.out.println("Current Balance: " + getBalance());
     }
+    @Override
+    public String generateReport() {
+        StringBuilder report = new StringBuilder();
+        report.append("Account: ").append(getAccountNumber()).append("\n");
+        report.append("First Name: ").append(getAccountHolderFirstName()).append("\n");
+        report.append("Last Name: ").append(getAccountHolderLastName()).append("\n");
+        report.append("Mailing Address: ").append(getMailingAddress()).append("\n");
+        report.append("Current Balance: ").append(getBalance()).append("\n");
+        report.append("Transaction History:\n");
+        for (Transaction t : transactions) {
+            report.append(t.getType()).append(": ").append(t.getAmount()).append("\n");
+        }
+        return report.toString();
+    }
 }

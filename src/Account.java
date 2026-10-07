@@ -23,9 +23,12 @@ abstract class Account {
         return accountHolderLastName;
     }
 
-    public String getMailingAddress() {
+    public String getMailingAddress(){
         return mailingAddress;
     }
-
+    public void setRealTimeFeed(RealTimeFeed realTimeFeed){
+        //This is empty now but will be filled in later.
+    }
     abstract double getAccountValue();
+    abstract String generateReport();
 }

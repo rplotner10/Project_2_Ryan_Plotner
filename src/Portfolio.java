@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
+import java.io.FileWriter;
 
 public class Portfolio {
 
@@ -14,6 +16,7 @@ public class Portfolio {
 
 
     public void addAccount(Account account) {
+        account.setRealTimeFeed(realTimeFeed);
         this.accounts.add(account);
     }
 
@@ -28,10 +31,21 @@ public class Portfolio {
     }
 
     public void generateReport(String fileName) {
+        accounts.sort(Comparator.comparingDouble(Account::getAccountValue).reversed());
+        try {
+        FileWriter writer = new FileWriter(fileName);
         for (Account account : accounts) {
-            System.out.println("Account: " + account.getAccountHolderFirstName() + " " + account.getAccountHolderLastName() + ", Value: " + account.getAccountValue());
+            writer.write(account.generateReport());
         }
-        System.out.println("Total Portfolio Value: " + getTotalValue());
+        writer.write("Total Portfolio Value: " + getTotalValue() + "\n");
+
+        writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
 
+
 }
+

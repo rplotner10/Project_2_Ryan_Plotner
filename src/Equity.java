@@ -17,6 +17,7 @@ public class Equity extends Account{
         this.purchaseStock.add(newPurchase);
     }
 
+    @Override
     public void setRealTimeFeed(RealTimeFeed realTimeFeed) {
         this.realTimeFeed = realTimeFeed;
     }
@@ -28,6 +29,23 @@ public class Equity extends Account{
             totalValue += currentPrice * purchase.getNumberOfShares();
         }
         return totalValue;
+    }
+
+    @Override
+    public String generateReport() {
+        StringBuilder report = new StringBuilder();
+        report.append("Account: ").append(getAccountNumber()).append("\n");
+        report.append("First Name: ").append(getAccountHolderFirstName()).append("\n");
+        report.append("Last Name: ").append(getAccountHolderLastName()).append("\n");
+        report.append("Mailing Address: ").append(getMailingAddress()).append("\n");
+        report.append("Current Portfolio Value: ").append(getAccountValue()).append("\n");
+        report.append("Stock Purchases:\n");
+        for (StockPurchase purchase : purchaseStock) {
+            report.append(purchase.getStockName()).append(" (").append(purchase.getTickerSymbol()).append(") - ");
+            report.append("Purchase Price: ").append(purchase.getPurchasePrice()).append(", ");
+            report.append("Number of Shares: ").append(purchase.getNumberOfShares()).append("\n");
+        }
+        return report.toString();
     }
 
 }
