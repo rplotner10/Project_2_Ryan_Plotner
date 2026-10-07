@@ -31,21 +31,29 @@ public class Portfolio {
     }
 
     public void generateReport(String fileName) {
-        accounts.sort(Comparator.comparingDouble(Account::getAccountValue).reversed());
-        try {
+    accounts.sort(Comparator.comparingDouble(Account::getAccountValue).reversed());
+
+    try {
         FileWriter writer = new FileWriter(fileName);
+        writer.write("<html>");
+        writer.write("<head><title>Portfolio Report</title></head>");
+        writer.write("<body>");
+        writer.write("<h1>Portfolio Report</h1>");
+
         for (Account account : accounts) {
-            writer.write(account.generateReport());
+            writer.write("<h2>Account: " + account.getAccountHolderFirstName() + " " + account.getAccountHolderLastName() + "</h2>");
+            writer.write("<pre>" + account.generateReport() + "</pre>");
         }
-        writer.write("Total Portfolio Value: " + getTotalValue() + "\n");
 
+        writer.write("<h2>Total Portfolio Value: " + getTotalValue() + "</h2>");
+        writer.write("</body>");
+        writer.write("</html>");
         writer.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-    }
 
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
 }
 
