@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.BufferedReader;
 public class MockRealTimeFeed implements RealTimeFeed{
    
     private ArrayList<String> tickerSymbols = new ArrayList<>();
@@ -8,7 +9,21 @@ public class MockRealTimeFeed implements RealTimeFeed{
     //Created a constructor that reads in both file paths
     public MockRealTimeFeed(String filePath){
         try {
-            FileInputStream fis = new FileInputStream(filePath);
+            FileReader fr = new FileReader(filePath);
+            //read the file
+            BufferedReader br = new BufferedReader(fr);
+            for (String line = br.readLine(); line != null; line = br.readLine()) {
+                int commaIndex = line.indexOf(' ');
+                if (commaIndex != -1) {
+                    String ticker = line.substring(0, commaIndex);
+                    String valueStr = line.substring(commaIndex + 1);
+                    tickerSymbols.add(ticker);
+                    currentValues.add(Double.parseDouble(valueStr));
+                }
+            }
+            br.close();
+
+             
             
         } catch (Exception e) {
             e.printStackTrace();
